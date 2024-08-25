@@ -6,9 +6,5 @@ vim.opt.termguicolors = true
 vim.opt.background = "dark"
 
 -- set colorscheme
-if vim.v.version >= 700 then
-    -- vim.cmd.colorscheme('gruvbox-material')
-    vim.cmd.colorscheme('base16-irblack')
-else
-    vim.cmd("colorscheme base16-irblack")
-end
+-- vim.cmd.colorscheme('base16-irblack')
+vim.cmd.colorscheme('base16-gruvbox-dark-hard')
