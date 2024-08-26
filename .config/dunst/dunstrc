@@ -1,0 +1,86 @@
+
+[global]
+    # General Config
+    monitor = 0
+    follow = mouse
+    notification_limit = 20
+    indicate_hidden = yes
+    show_indicators = yes
+    always_run_script = true
+
+    # Placemnt and dimensions
+    width = (100,500)
+    height = 1000
+    origin = top-right
+    offset = 15x15
+    padding = 10
+    horizontal_padding = 10
+    frame_width = 3
+    gap_size = 2
+    line_height = 0
+
+    # Display
+    progress_bar = true
+    markup = full
+    format = "<b>%s %p</b>\n%b"
+
+    # Text
+    font = Terminus 8
+    word-wrap = yes
+    vertical_alignment = center
+    alignment = left
+    ignore_newline = no
+
+    # icon settings
+    icon_position = left
+    min_icon_size = 0
+    max_icon_size = 128
+    icon_path = /usr/share/icons/HighContrast/16x16/status/:/usr/share/icons/HighContrast/16x16/devices/:/usr/share/icons/HighContrast/16x16/apps/
+
+    # Mouse Actions
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
+    # Global Colors
+    frame_color = "#766e6b"
+    separator_color = "#d3c6aa"
+    highlight = "#99cc99"
+
+
+## COLORS
+# #232323 - black
+# #ffcc66 - yellow
+# #f22c40 - red
+# #99cc99 - green-soft
+# #859289 - whiteish
+
+[urgency_low]
+    msg_urgency = low
+    background = "#232323"
+    foreground = "#859289"
+
+[urgency_normal]
+    msg_urgency = normal
+    background = "#232323"
+    foreground = "#ffcc66"
+
+[urgency_critical]
+    msg_urgency = critical
+    background = "#f22c40"
+    foreground = "#e4e1cd"
+
+
+## CUSTOM MATCHING RULES
+[brightness]
+    appname = "brightness"
+    background = "#232323"
+    foreground = "#ffcc66"
+    highlight = "#f2f0f0"
+
+[volume]
+    appname = "volume"
+    background = "#232323"
+    foreground = "#ffcc66"
+    highlight = "#99cc99"
+

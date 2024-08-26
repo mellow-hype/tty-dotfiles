@@ -1,0 +1,65 @@
+
+general {
+        colors = true
+        interval = 5
+}
+
+order += "ethernet _first_"
+order += "wireless _first_"
+order += "disk /"
+order += "disk /media/hypercore/core"
+order += "disk /media/hypercore/media"
+order += "cpu_usage"
+order += "memory"
+order += "battery 0"
+order += "tztime local"
+
+wireless _first_ {
+        format_up = "W: %ip (%essid)"
+        format_down = "W: down"
+}
+ethernet _first_ {
+        format_up = "E: %ip"
+        format_down = "E: down"
+}
+
+battery 0 {
+        format = "%status %percentage %remaining"
+        status_bat = "🔋 BAT"
+        status_chr = "⚡ CHR"
+        status_full = "🔋 FULL"
+        last_full_capacity = true
+}
+
+# DISKS/PARTITIONS
+disk "/" {
+        format = "/: %avail"
+}
+
+disk "/media/hypercore/core" {
+        format = "/core: %avail"
+}
+
+disk "/media/hypercore/media" {
+        format = "/media: %avail"
+}
+
+# CPU metrics
+cpu_usage {
+        format = "cpu: %usage"
+        separator = false
+}
+load {
+        format = "[%1min, %5min, %15min]"
+}
+
+
+memory {
+        format = "mem: %used"
+        threshold_degraded = "1G"
+        format_degraded = "MEMORY < %available"
+}
+
+tztime local {
+        format = "%Y-%m-%d %H:%M:%S"
+}

@@ -1,0 +1,274 @@
+# Default config for sway
+# Read `man 5 sway` for a complete reference.
+
+### Variables
+#
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+font pango:Terminus 8
+
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Custom application vars
+set $term foot
+set $browser firefox
+set $grimsel /home/hyper/bin/hyprkit/grimsel
+
+# Your preferred application launcher
+# Note: pass the final command to swaymsg so that the resulting window can be opened
+# on the original workspace that the command was run on.
+set $fuzzel_cmd fuzzel -d -b "#212121ff" -t "#ffcc66ff" -s "#ffcc66ff" -S "#212121ff" --font="Terminus:size=10" -w 64 -I
+set $menu dmenu_path | $fuzzel_cmd | xargs swaymsg exec --
+
+# media playlist menu
+set $dmytpm /home/hyper/bin/dm-ytpm | xargs mpv --profile=ytv --
+
+include /etc/sway/config-vars.d/*
+
+### Wallpaper
+output * bg /home/hyper/media/wallpapers/faces.png fill
+
+### Input configuration
+input "type:keyboard" {
+    xkb_options caps:super
+}
+
+
+##################################################
+### Key bindings
+##################################################
+#
+# Basics:
+#
+# Start a terminal
+bindsym $mod+Return exec $term
+
+# Start a browser
+bindsym $mod+w exec --no-startup-id $browser
+
+# Kill focused window
+bindsym $mod+x kill
+
+# Start your launcher
+bindsym $mod+space exec $menu
+
+bindsym $mod+m exec $dmytpm
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+floating_modifier $mod normal
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Exit sway (logs you out of your Wayland session)
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+#
+# Moving around:
+#
+# Move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# Move the focused window with the same, but add Shift
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+#
+# Workspaces:
+#
+# Switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# quickly switch back and forth between most recently focused workspaces
+bindsym $mod+slash workspace back_and_forth
+
+# scroll through workspaces with arrows
+bindsym $mod+Left workspace prev
+bindsym $mod+Right workspace next
+
+#
+# Layout stuff:
+#
+bindsym $mod+v split toggle
+
+# Switch the current container between different layout styles
+bindsym $mod+s layout stacking
+bindsym $mod+e layout toggle splitv splith
+bindsym $mod+t layout toggle splith tabbed
+
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
+
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+space floating toggle
+
+# Swap focus between the tiling area and the floating area
+bindsym $mod+period focus mode_toggle
+
+# Move focus to the parent container
+bindsym $mod+a focus parent
+# Move focus to the child container
+bindsym $mod+z focus child
+
+#
+# Scratchpad:
+#
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Cycle through scratchpad windows
+bindsym $mod+minus scratchpad show
+
+
+##################################################
+### Control Modes
+#
+# Resizing containers:
+#
+mode "resize" {
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+
+##################################################
+## CUSTOM KEYBINDS
+# Brightness controls
+bindsym XF86MonBrightnessDown exec "brightnessctl set 5%- && /home/hyper/bin/notify.sh brightness
+bindsym XF86MonBrightnessUp exec "brightnessctl set 5%+ && /home/hyper/bin/notify.sh brightness"
+
+# Audio controls
+bindsym XF86AudioRaiseVolume exec /home/hyper/bin/volume.sh up
+bindsym XF86AudioLowerVolume exec /home/hyper/bin/volume.sh down
+bindsym XF86AudioMute exec /home/hyper/bin/volume.sh mute
+bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+
+# lock toggle
+bindsym $mod+backspace exec 'swaylock -f -c 3f4944'
+
+# screenshots
+bindsym $mod+Shift+p exec $grimsel
+
+# focus switching with fuzzel
+bindsym $mod+Tab exec /home/hyper/bin/dm-swayfocus
+
+# ytpm with fuzzel
+bindsym $mod+Shift+y exec "/home/hyper/bin/dm-ytpm | xargs /home/hyper/bin/ympv"
+
+# Dynamic gaps setting
+# bindsym $mod+Shift+period gaps inner all set 5
+# bindsym $mod+Shift+comma gaps inner all set 0
+
+##################################################
+## VISUAL/THEMING
+# Window border
+default_border pixel 2
+
+# Gaps
+gaps inner 5
+smart_gaps on
+
+# application-specific settings
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [title="Preferences$"] floating enable
+for_window [title="File Manager$"] floating enable
+for_window [title="Thunar"] floating enable
+for_window [title="Pavucontrol"] floating enable
+
+
+# Window decoration
+set $default_blue #5e8d87
+
+# "primary color" for theming; this is  really the only color that should be adjusted; everything
+# else is pretty well balanced/neutral (for inactive windows, etc)
+set $pcolor         #8ec07c
+set $gray_dark      #242322
+set $red            #fb4934
+
+# class                 border  bground text    indicator child_border
+client.focused          #242322 $pcolor #FFFFFF #a54242  $pcolor
+client.focused_inactive #8C8C8C #4C4C4C #FFFFFF #4C4C4C   #8C8C8C
+client.unfocused        #4C4C4C #242322 #888888 #292D2E   #242322
+client.urgent           #EC69A0 #DB3279 #FFFFFF #DB3279   $red
+client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+client.background       #FFFFFF
+
+# Status Bar:
+bar {
+    position top
+    status_command i3status
+
+    colors {
+        background $gray_dark
+        statusline #FFFFFF
+        separator  #666666
+
+        focused_workspace  #fefefe $pcolor  #ffffff
+        active_workspace   #3C6EB4 #294172  #FFFFFF
+        inactive_workspace #8C8C8C #4C4C4C  #888888
+        urgent_workspace   #EC69A0 $red     #FFFFFF
+        binding_mode       #b691d3 #A07CBC  #FFFFFF
+    }
+}
+
+
+##################################################
+## AUTOSTARTS
+#
+# Startup applications
+exec_always xrdb -load ~/.Xresources
+exec dunst &
+exec dex --autostart --environment sway
+# Idle configuration
+exec ~/.config/sway/idle.sh &
+exec_always {
+    pkill kanshi;
+    kanshi &
+}
+
+include /etc/sway/config.d/*
