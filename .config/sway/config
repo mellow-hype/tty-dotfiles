@@ -30,7 +30,7 @@ set $dmytpm /home/hyper/bin/dm-ytpm | xargs mpv --profile=ytv --
 include /etc/sway/config-vars.d/*
 
 ### Wallpaper
-output * bg /home/hyper/media/wallpapers/faces.png fill
+output * bg /home/hyper/.config/faces.png fill
 
 ### Input configuration
 input "type:keyboard" {
