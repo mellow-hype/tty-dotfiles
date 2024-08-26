@@ -73,6 +73,7 @@ alias c="clear"
 alias mkx="chmod +x"
 alias rmf="rm -rf"
 alias cpa="cp -a"
+alias psfind="ps aux | grep"
 
 # media
 alias yv="mpv --cache-pause-initial=yes --ytdl-format='bestvideo[height<=720]+bestaudio/best'"
@@ -99,3 +100,4 @@ alias commitconf="config commit -m"
 # vim stuff
 alias vpy="echo -e '#!/usr/bin/env python3' | vim - +'file tmp.py'"
 alias vsh="echo -e '#!/usr/bin/env bash' | vim - +'file tmp.sh'"
+
