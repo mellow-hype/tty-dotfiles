@@ -28,7 +28,14 @@ setkey("", "<C-k>", "<C-W>k", {})
 setkey("", "<C-h>", "<C-W>h", {})
 setkey("", "<C-l>", "<C-W>l", {})
 
--- move between buffers
+-- manage buffers
 setkey("n", "<leader>b", ":bprevious<cr>", {})
 setkey("n", "<leader>n", ":bnext<cr>", {})
+setkey("n", "<leader>x", ":bdelete<cr>", {})
+
+-- manage tabs
+setkey("n", "<leader>do", ":tabnew<cr>", {})
+setkey("n", "<leader>df", ":tabnext<cr>", {})
+setkey("n", "<leader>ds", ":tabprevious<cr>", {})
+setkey("n", "<leader>dx", ":tabclose<cr>", {})
 

@@ -3,9 +3,9 @@ local setkey = nil
 if vim.v.version >= 700 then
     setkey = vim.keymap.set
 else
-    -- vim.cmd("colorscheme gruvbox-material")
     setkey = vim.api.nvim_set_keymap
 end
+
 setkey("n", "<leader>t", ":NERDTreeToggle<cr>", {noremap=true})
 
 -- open nerdtree when opening a dir

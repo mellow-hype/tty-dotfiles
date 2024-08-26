@@ -17,18 +17,15 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- colorschemes
-  use 'hardselius/warlock'
-  use 'arzg/vim-substrata'
   use 'sainnhe/gruvbox-material'
   use 'morhetz/gruvbox'
-  use 'dracula/vim'
 
   -- core plugins
   use 'preservim/vim-markdown'
+  use 'preservim/nerdtree'
   use 'tpope/vim-commentary'
   use 'tpope/vim-fugitive'
   use 'tpope/vim-surround'
-  use 'preservim/nerdtree'
   use 'vim-airline/vim-airline'
   use 'vim-airline/vim-airline-themes'
 
