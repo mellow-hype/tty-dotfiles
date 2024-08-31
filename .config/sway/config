@@ -198,6 +198,8 @@ bindsym $mod+Shift+y exec "/home/hyper/bin/dm-ytpm | xargs /home/hyper/bin/ympv"
 ## VISUAL/THEMING
 # Window border
 default_border pixel 2
+for_window [floating] border normal 2
+for_window [tiling] border pixel 3
 
 # Gaps
 gaps inner 5
@@ -206,10 +208,16 @@ smart_gaps on
 # application-specific settings
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
-for_window [title="Preferences$"] floating enable
-for_window [title="File Manager$"] floating enable
-for_window [title="Thunar"] floating enable
-for_window [title="Pavucontrol"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+
+for_window [app_id="pavucontrol"] floating enable
+for_window [instance="1password"] floating enable, resize set 800 600, move scratchpad
+for_window [class="1Password"] floating enable, resize set 800 600, move scratchpad
+
+# custom settings for floating windows
+
 
 
 # Window decoration
@@ -262,7 +270,7 @@ exec ~/.config/sway/idle.sh &
 # kanshi systemd service
 exec sleep 5; systemctl --user start kanshi.service
 
-# gpg-agent service
-exec systemctl --user start gpg-agent.service
+# start 1password
+exec 1password
 
 include /etc/sway/config.d/*

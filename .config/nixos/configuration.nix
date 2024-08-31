@@ -7,7 +7,7 @@
 {
     imports =
         [ # Include the results of the hardware scan.
-          ./hardware-configuration.nix
+          /etc/nixos/hardware-configuration.nix
           /etc/nixos/modules/docker.nix
           /etc/nixos/modules/sway.nix
           /etc/nixos/modules/gui-common.nix
