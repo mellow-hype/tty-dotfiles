@@ -1,0 +1,7 @@
+profile {
+	output DP-0 mode 5120x1440 enable position 0,0
+}
+
+profile {
+	output eDP-1 enable
+}
