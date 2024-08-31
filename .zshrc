@@ -37,13 +37,14 @@ export GEM_HOME=$HOME/gems
 preexec() { print -Pn "\e]0;%~: $1\a" }
 
 # ssh agent service socket
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+#export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes.
 #
 # load private aliases
-. $ZSH_CUSTOM/aliases.zsh
+#. $ZSH_CUSTOM/aliases.zsh
 
 alias zshreload="omz reload"
 
@@ -54,10 +55,11 @@ alias i3config="vim ~/.config/i3/config"
 alias swaycfg="vim ~/.config/sway/config"
 
 # better default ls and variants
-alias l="/bin/ls --color=auto"
-alias ls="/bin/ls -l --color=auto --group-directories-first"
-alias la="ls -A"
-alias sl="ls"
+LSBIN=$(bash -c "which ls")
+alias l="$LSBIN--color=auto"
+alias ls="$LSBIN -l --color=auto --group-directories-first"
+alias la="$LSBIN -A"
+alias sl="$LSBIN"
 
 # git aliases
 alias gpo="git push origin $(git_current_branch)"
@@ -88,12 +90,12 @@ alias tmn="tmux new -s"
 alias lptun="sudo ss -lptun"
 
 # alias for managing tty-dotfiles git repo
-alias ttycfg='/usr/bin/git --git-dir=$HOME/.tty-dotfiles/ --work-tree=$HOME'
+alias ttycfg='git --git-dir=$HOME/.tty-dotfiles/ --work-tree=$HOME'
 alias ttystatus='ttycfg status'
 alias ttycomm='ttycfg commit -m'
 
 # alias for managing dotfiles with bare git directory
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias confstat="config status"
 alias commitconf="config commit -m"
 

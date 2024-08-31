@@ -56,8 +56,6 @@ bindsym $mod+x kill
 # Start your launcher
 bindsym $mod+space exec $menu
 
-bindsym $mod+m exec $dmytpm
-
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
 floating_modifier $mod normal
@@ -178,7 +176,7 @@ bindsym $mod+r mode "resize"
 ##################################################
 ## CUSTOM KEYBINDS
 # Brightness controls
-bindsym XF86MonBrightnessDown exec "brightnessctl set 5%- && /home/hyper/bin/notify.sh brightness
+bindsym XF86MonBrightnessDown exec "brightnessctl set 5%- && /home/hyper/bin/notify.sh brightness"
 bindsym XF86MonBrightnessUp exec "brightnessctl set 5%+ && /home/hyper/bin/notify.sh brightness"
 
 # Audio controls
@@ -193,15 +191,8 @@ bindsym $mod+backspace exec 'swaylock -f -c 3f4944'
 # screenshots
 bindsym $mod+Shift+p exec $grimsel
 
-# focus switching with fuzzel
-bindsym $mod+Tab exec /home/hyper/bin/dm-swayfocus
-
 # ytpm with fuzzel
 bindsym $mod+Shift+y exec "/home/hyper/bin/dm-ytpm | xargs /home/hyper/bin/ympv"
-
-# Dynamic gaps setting
-# bindsym $mod+Shift+period gaps inner all set 5
-# bindsym $mod+Shift+comma gaps inner all set 0
 
 ##################################################
 ## VISUAL/THEMING
@@ -264,11 +255,14 @@ bar {
 exec_always xrdb -load ~/.Xresources
 exec dunst &
 exec dex --autostart --environment sway
+
 # Idle configuration
 exec ~/.config/sway/idle.sh &
-exec_always {
-    pkill kanshi;
-    kanshi &
-}
+
+# kanshi systemd service
+exec sleep 5; systemctl --user start kanshi.service
+
+# gpg-agent service
+exec systemctl --user start gpg-agent.service
 
 include /etc/sway/config.d/*
