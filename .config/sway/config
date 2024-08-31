@@ -213,8 +213,8 @@ for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
 
 for_window [app_id="pavucontrol"] floating enable
-for_window [instance="1password"] floating enable, resize set 800 600, move scratchpad
-for_window [class="1Password"] floating enable, resize set 800 600, move scratchpad
+for_window [instance="1password" title="1Password$"] floating enable, resize set 800 600
+for_window [class="1Password" title="1Password$"] floating enable, resize set 800 600
 
 # custom settings for floating windows
 
@@ -269,8 +269,5 @@ exec ~/.config/sway/idle.sh &
 
 # kanshi systemd service
 exec sleep 5; systemctl --user start kanshi.service
-
-# start 1password
-exec 1password
 
 include /etc/sway/config.d/*
