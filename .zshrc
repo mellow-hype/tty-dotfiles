@@ -90,14 +90,12 @@ alias tmn="tmux new -s"
 alias lptun="sudo ss -lptun"
 
 # alias for managing tty-dotfiles git repo
-alias ttycfg='git --git-dir=$HOME/.tty-dotfiles/ --work-tree=$HOME'
-alias ttystatus='ttycfg status'
-alias ttycomm='ttycfg commit -m'
+alias cfg='git --git-dir=$HOME/.tty-dotfiles/ --work-tree=$HOME'
+alias cfgs='cfg status'
+alias cfgcom='cfg commit -m'
 
 # alias for managing dotfiles with bare git directory
-alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias confstat="config status"
-alias commitconf="config commit -m"
+alias cfg-priv='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # vim stuff
 alias vpy="echo -e '#!/usr/bin/env python3' | vim - +'file tmp.py'"
