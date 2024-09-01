@@ -38,8 +38,6 @@ in {
         i3status
         feh
         wdisplays
-        # browser
-        ungoogled-chromium
         # media
         mpv
         moc
