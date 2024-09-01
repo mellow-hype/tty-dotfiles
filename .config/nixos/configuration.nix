@@ -46,6 +46,9 @@
         shell = pkgs.zsh;
         description = "hyper";
         extraGroups = [ "networkmanager" "wheel" "video" "docker" ];
+        packages = with pkgs; [
+            obsidian
+        ];
     };
 
     # Allow unfree packages
@@ -64,6 +67,7 @@
         # dev
         coreutils
         binutils
+        bc
         autoconf
         gcc
         gdb

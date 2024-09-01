@@ -10,7 +10,8 @@ in {
                 ${pkgs.greetd.tuigreet}/bin/tuigreet \
                 --time \
                 --asterisks \
-                --user-menu \
+                --remember \
+                --greeting "welcome back" \
                 --cmd 'sway --unsupported-gpu'
           '';
         };
@@ -60,6 +61,16 @@ in {
         serviceConfig = {
             Type = "simple";
             ExecStart = ''${pkgs.kanshi}/bin/kanshi -c /home/${username}/.config/kanshi/config'';
+        };
+    };
+
+    systemd.user.services.gammastep = {
+        description = "gammastep daemon";
+        serviceConfig = {
+            Type = "simple";
+            ExecStart = ''
+                ${pkgs.gammastep}/bin/gammastep -c /home/${username}/.config/gammastep/config.ini
+            '';
         };
     };
 

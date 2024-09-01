@@ -67,7 +67,7 @@ alias gstat="git status"
 
 # command wrappers
 alias vim="nvim"
-alias bat="batcat"
+# alias bat="batcat"
 alias apti="sudo apt install"
 alias dl="wget"
 alias ff="fzf"
