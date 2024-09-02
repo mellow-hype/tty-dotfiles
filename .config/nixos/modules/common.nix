@@ -1,6 +1,15 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, variables, ... }:
 
 {
+    imports = [
+        /etc/nixos/modules/variables.nix
+        /etc/nixos/modules/user.nix
+    ];
+
+    # Enable networking
+    networking.hostName = variables.hostname; # Define your hostname.
+    networking.networkmanager.enable = variables.useNetworkManager;
+
     # Set your time zone.
     time.timeZone = "America/Los_Angeles";
 
@@ -55,7 +64,6 @@
 
     # Some programs need SUID wrappers, can be configured further or are
     # started in user sessions.
-    # programs.mtr.enable = true;
     programs.gnupg.agent = {
       enable = true;
       enableSSHSupport = true;

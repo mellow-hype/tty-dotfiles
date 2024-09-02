@@ -1,6 +1,8 @@
 { config, pkgs, lib, variables, ... }:
 
 {
+    imports = [ /etc/nixos/modules/gui-common.nix ];
+
     # set the video driver to use (in case nvidia doesn't want to play nice with sway)
     services.xserver.videoDrivers = variables.videoDrivers;
 
@@ -40,9 +42,6 @@
         i3status
         feh
         wdisplays
-        # media
-        mpv
-        moc
     ];
 
     # enable sway and set up the environment a bit

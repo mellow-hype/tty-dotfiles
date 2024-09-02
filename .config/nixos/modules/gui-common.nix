@@ -30,6 +30,13 @@
         package = pkgs.firefox-bin;
     };
 
+    # other gui packages
+    environment.systemPackages = with pkgs; [
+        # media
+        mpv
+        moc
+    ];
+
     # Install fonts
     fonts.packages = with pkgs; [
         terminus_font

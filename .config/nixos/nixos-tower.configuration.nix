@@ -1,30 +1,34 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, variables, ... }:
 
 {
+    # host specific variables
+    variables.username = "hyper";
+    variables.hostname = "nixos-tower";
+    variables.videoDrivers = ["nouveau"];
+    variables.useNetworkManager = true;
+
+    # host-specific user packages
+    variables.userPkgs = with pkgs; [ obsidian ];
+
     imports =
         [ # Include the results of the hardware scan.
           /etc/nixos/hardware-configuration.nix
-          # common stuff
+          # setup
           /etc/nixos/modules/common.nix
-          /etc/nixos/modules/user-hyper.nix
-          # GUI
-          /etc/nixos/modules/gui-common.nix
-          /etc/nixos/modules/sway.nix
-          /etc/nixos/modules/nvidia-sway.nix
-          # other
           /etc/nixos/modules/docker.nix
+          # gui
+          /etc/nixos/modules/sway.nix
         ];
 
-    # Bootloader.
+    # bootloader
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
 
-    # Enable networking
-    networking.hostName = "nixos-tower"; # Define your hostname.
-    networking.networkmanager.enable = true;
+    # enable OpenGL
+    hardware.opengl.enable = true;
 
+    # machine-specific packages
     environment.systemPackages = with pkgs; [
-        # control commander pro fans
         liquidctl
         lm_sensors
     ];
