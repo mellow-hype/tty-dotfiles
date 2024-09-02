@@ -2,7 +2,6 @@
 
 {
     # host specific variables
-    variables.username = "hyper";
     variables.hostname = "nixos-tower";
     variables.videoDrivers = ["nouveau"];
     variables.useNetworkManager = true;

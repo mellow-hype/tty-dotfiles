@@ -4,7 +4,12 @@
     imports = [
         /etc/nixos/modules/variables.nix
         /etc/nixos/modules/user.nix
+        /etc/nixos/modules/tmux.nix
     ];
+
+    # common variables
+    variables.username = "hyper";
+    variables.editor = "nvim";
 
     # Enable networking
     networking.hostName = variables.hostname; # Define your hostname.
@@ -30,16 +35,24 @@
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
 
-    # Install zsh
-    programs.zsh.enable = true;
+    # neovim
+    programs.neovim = {
+        enable = true;
+        defaultEditor = true;
+        vimAlias = true;
+    };
 
-    # baseline common packages
+    # Install common applications
+    programs.git.enable = true;
+    programs.zsh.enable = true;
+    programs.htop.enable = true;
+
+    # other common packages
     environment.systemPackages = with pkgs; [
-        # editor
-        neovim
-        fzf
         ripgrep
-        # dev
+        jq
+        fzf
+        bat
         coreutils
         binutils
         bc
@@ -50,11 +63,6 @@
         cmake
         python3Full
         bear
-        # shell
-        bat
-        git
-        tmux
-        htop
         curl
         wget
         file
