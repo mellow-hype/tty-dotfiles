@@ -23,6 +23,13 @@
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
 
+    # ssh server setup
+    services.openssh = {
+        enable = true;
+        settings.PermitRootLogin = "no";
+        settings.PasswordAuthentication = false;
+    };
+
     # enable OpenGL
     hardware.opengl.enable = true;
 

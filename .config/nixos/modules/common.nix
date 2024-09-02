@@ -9,6 +9,10 @@
 
     # common variables
     variables.username = "hyper";
+    variables.sshPubKey = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGxsw2SeHjLHQCKfJH7zg8gjBT/7/5OoiAHJJUX77QoX"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDZPot/kAnyC2b1RdXRQZfurxIafERQB/yeArx//eQB2"
+    ];
     variables.editor = "nvim";
 
     # Enable networking

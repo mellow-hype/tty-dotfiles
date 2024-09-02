@@ -7,5 +7,6 @@
         description = "${variables.username}";
         extraGroups = [ "networkmanager" "wheel" "video" "docker" ];
         packages = variables.userPkgs;
+        openssh.authorizedKeys.keys = variables.sshPubKey;
     };
 }
