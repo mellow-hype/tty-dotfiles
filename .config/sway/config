@@ -268,7 +268,7 @@ exec dex --autostart --environment sway
 exec ~/.config/sway/idle.sh &
 
 # kanshi systemd service
-exec sleep 3; systemctl --user start kanshi.service
-exec sleep 3; systemctl --user start gammastep.service
+exec "sleep 3; systemctl --user start kanshi.service"
+exec "sleep 3; systemctl --user start gammastep.service"
 
 include /etc/sway/config.d/*
