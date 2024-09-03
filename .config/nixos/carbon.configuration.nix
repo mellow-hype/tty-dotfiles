@@ -29,6 +29,8 @@
         enable = true;
         extraPackages = with pkgs; [
             onevpl-intel-gpu
+            intel-vaapi-driver
+            libvdpau-va-gl
         ];
     };
 
