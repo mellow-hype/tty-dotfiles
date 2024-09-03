@@ -3,7 +3,8 @@
 {
     # host specific variables
     variables.hostname = "nixos-tower";
-    variables.videoDrivers = ["nouveau"];
+    variables.videoDrivers = ["nvidia"];
+    variables.useNvidia = true;
     variables.useNetworkManager = true;
 
     # host-specific user packages
@@ -17,6 +18,7 @@
           /etc/nixos/modules/docker.nix
           # gui
           /etc/nixos/modules/sway.nix
+          /etc/nixos/modules/nvidia.nix
         ];
 
     # bootloader
@@ -31,7 +33,25 @@
     };
 
     # enable OpenGL
-    hardware.opengl.enable = true;
+    hardware.opengl = {
+        enable = true;
+        driSupport = true;
+        extraPackages = with pkgs; [
+            vulkan-tools
+            vulkan-validation-layers
+            mesa
+        ];
+    };
+
+    # make sway + nvidia play nicer
+    programs.sway.extraSessionCommands = ''
+        export WLR_DRM_DEVICES="/dev/dri/card1:/dev/dri/card0"
+        export WLR_RENDERER=vulkan
+        export GBM_BACKEND=nvidia-drm
+        export __GL_GSYNC_ALLOWED=0
+        export __GL_VRR_ALLOWED=0
+        export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    '';
 
     # machine-specific packages
     environment.systemPackages = with pkgs; [

@@ -4,7 +4,9 @@
     imports = [ /etc/nixos/modules/gui-common.nix ];
 
     # set the video driver to use (in case nvidia doesn't want to play nice with sway)
-    services.xserver.videoDrivers = variables.videoDrivers;
+    services.xserver.videoDrivers = lib.mkIf variables.useNvidia [
+        "nvidia"
+    ];
 
     # set up greetd + tuigreet
     services.greetd = {
@@ -16,7 +18,7 @@
                 --asterisks \
                 --remember \
                 --greeting "welcome back" \
-                --cmd 'sway'
+                --cmd 'sway ${if variables.useNvidia then "--unsupported-gpu" else ""}'
           '';
         };
     };
@@ -51,8 +53,12 @@
         extraSessionCommands = ''
           export MOZ_ENABLE_WAYLAND=1
           export _JAVA_AWT_WM_NONREPARENTING=1
-          export QT_QTA_PLATFORM=wayland
-          export SDL_VIDOEDRIVER=wayland
+          export QT_QPA_PLATFORM=wayland
+          export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+          export SDL_VIDEODRIVER=wayland
+          export WLR_DRM_DEVICES="/dev/dri/card1:/dev/dri/card0"
+          export WLR_NO_HARDWARE_CURSORS=1
+          export XWAYLAND_NO_GLAMOR=1
         '';
     };
 
