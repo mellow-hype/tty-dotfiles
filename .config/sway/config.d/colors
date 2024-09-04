@@ -3,11 +3,12 @@ set $default_blue #5e8d87
 
 # "primary color" for theming; this is  really the only color that should be adjusted; everything
 # else is pretty well balanced/neutral (for inactive windows, etc)
-set $green         #8ec07c
+set $green          #8ec07c
+
+# other useful colors
 set $gray_dark      #242322
 set $red            #fb4934
 set $white          #ffffff
-
 
 # highlight/primary color
 set $cl_high $green
@@ -19,6 +20,8 @@ set $cl_back $gray_dark
 set $cl_fore $white
 # indicator
 set $cl_indi #a54242
+# mid darkness gray
+set $cl_gray #4c4c4c
 
 # class                 border   bground  text     indi     child_border
 client.focused          $cl_high $cl_high $cl_fore $cl_indi $cl_high
@@ -36,13 +39,13 @@ bar {
     colors {
         background $cl_back
         statusline $cl_fore
-        separator  #666666
+        separator  $cl_gray
 
-        focused_workspace  $cl_back $cl_high    $cl_fore
-        active_workspace   #3C6EB4  #294172     $cl_fore
-        inactive_workspace #8C8C8C  #4C4C4C     #888888
-        urgent_workspace   #EC69A0  $red        $cl_fore
-        binding_mode       #b691d3  $cl_urge    $cl_fore
+        focused_workspace  $cl_fore $cl_high    $cl_fore
+        active_workspace   $cl_fore $cl_high    $cl_fore
+        inactive_workspace $cl_gray $cl_back    $cl_fore
+        urgent_workspace   $cl_urge $cl_urge    $cl_fore
+        binding_mode       $cl_back $cl_urge    $cl_fore
     }
 }
 
