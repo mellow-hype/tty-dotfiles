@@ -3,8 +3,7 @@
 # applications
 set $term foot
 set $browser firefox
-set $lock "swaylock -f -c 3f4944"
-set $lock_hackers "swaylock -f -c 181818 -s center -i ~/.config/acid_burn_black.jpg"
+set $lock "swaylock"
 set $screenclip "/home/hyper/bin/hyprkit/grimsel"
 
 # Command for menu provider
