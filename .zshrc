@@ -31,8 +31,6 @@ _systemctl_unit_state() {
 # ruby gems setup
 export GEM_HOME=$HOME/gems
 
-# this is for agnostr theme
-#DEFAULT_USER=`whoami`
 # this is for dynamic window renaming with tmux+alacritty
 preexec() { print -Pn "\e]0;%~: $1\a" }
 
@@ -42,9 +40,6 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes.
-#
-# load private aliases
-#. $ZSH_CUSTOM/aliases.zsh
 
 alias zshreload="omz reload"
 
@@ -58,8 +53,8 @@ alias swaycfg="vim ~/.config/sway/config"
 LSBIN=$(bash -c "which ls")
 alias l="$LSBIN --color=auto"
 alias ls="$LSBIN -l --color=auto --group-directories-first"
-alias la="$LSBIN -A"
-alias sl="$LSBIN"
+alias la="ls -A"
+alias sl="ls"
 
 # git aliases
 alias gpo="git push origin $(git_current_branch)"
@@ -77,12 +72,16 @@ alias rmf="rm -rf"
 alias cpa="cp -a"
 alias psfind="ps aux | grep"
 
+# Nix wrappers
+alias nxr="sudo nixos-rebuild"
+alias nxsh="nix-shell"
+
 # media
 alias yv="mpv --cache-pause-initial=yes --ytdl-format='bestvideo[height<=720]+bestaudio/best'"
 alias ya="mpv --ytdl-format='bestaudio/best'"
 
 # tmux aliases
-alias tmls="tmux ls"
+alias tml="tmux ls"
 alias tma="tmux attach -t"
 alias tmn="tmux new -s"
 
@@ -91,8 +90,10 @@ alias lptun="sudo ss -lptun"
 
 # alias for managing tty-dotfiles git repo
 alias cfg='git --git-dir=$HOME/.tty-dotfiles/ --work-tree=$HOME'
+alias cfga='cfg add'
 alias cfgs='cfg status'
-alias cfgcom='cfg commit -m'
+alias cfgc='cfg commit -m'
+alias cfgl='cfg log'
 
 # alias for managing dotfiles with bare git directory
 alias cfg-priv='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
