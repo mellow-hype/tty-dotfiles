@@ -34,6 +34,13 @@ if vim.v.version >= 700 then
         command = "setlocal colorcolumn=100 textwidth=100 conceallevel=2 wrap"
     })
 
+    -- sway config
+    vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+        pattern = {"*sway/config.d/*"},
+        command = "set filetype=swayconfig"
+    })
+
+
 else
     -- use this for neovim versions <0.8
     vim.cmd([[

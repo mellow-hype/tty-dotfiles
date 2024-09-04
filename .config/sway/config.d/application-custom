@@ -1,0 +1,23 @@
+
+## -- Custom Application Keybinds --
+# lock toggle
+bindsym $mod+backspace exec $lock
+
+# screenshots select
+bindsym $mod+Shift+p exec $screenclip
+
+# ytpm with fuzzel
+bindsym $mod+Shift+y exec $menu_mpv
+
+# Start a terminal
+bindsym $mod+Return exec $term
+
+# Start a browser
+bindsym $mod+w exec --no-startup-id $browser
+
+# Start launcher
+bindsym $mod+space exec $menu
+
+# custom binding tos how 1password scratchpad window if it exists
+bindsym $mod+p [instance="1password"] scratchpad show
+

@@ -1,33 +1,22 @@
-# Default config for sway
-# Read `man 5 sway` for a complete reference.
+
+##################################################
+# Global
+##################################################
+font pango:Terminus 8
+include /etc/sway/config-vars.d/*
 
 ### Variables
-#
+set $subcfgs "/home/hyper/.config/sway/config.d"
+include $subcfgs/variables
+
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
-font pango:Terminus 8
-
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
 
-# Custom application vars
-set $term foot
-set $browser firefox
-set $grimsel /home/hyper/bin/hyprkit/grimsel
-
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-set $fuzzel_cmd fuzzel -d -b "#212121ff" -t "#ffcc66ff" -s "#ffcc66ff" -S "#212121ff" --font="Terminus:size=10" -w 64 -I
-set $menu dmenu_path | $fuzzel_cmd | xargs swaymsg exec --
-
-# media playlist menu
-set $dmytpm /home/hyper/bin/dm-ytpm | xargs mpv --profile=ytv --
-
-include /etc/sway/config-vars.d/*
 
 ### Wallpaper
 output * bg /home/hyper/.config/faces.png fill
@@ -39,22 +28,11 @@ input "type:keyboard" {
 
 
 ##################################################
-### Key bindings
+# Key bindings
 ##################################################
 #
-# Basics:
-#
-# Start a terminal
-bindsym $mod+Return exec $term
-
-# Start a browser
-bindsym $mod+w exec --no-startup-id $browser
-
 # Kill focused window
 bindsym $mod+x kill
-
-# Start your launcher
-bindsym $mod+space exec $menu
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -66,8 +44,7 @@ bindsym $mod+Shift+c reload
 # Exit sway (logs you out of your Wayland session)
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
-#
-# Moving around:
+# ======== Movement ========
 #
 # Move your focus around
 bindsym $mod+$left focus left
@@ -81,8 +58,7 @@ bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
 
-#
-# Workspaces:
+# ======== Workspaces ========
 #
 # Switch to workspace
 bindsym $mod+1 workspace number 1
@@ -115,9 +91,9 @@ bindsym $mod+slash workspace back_and_forth
 bindsym $mod+Left workspace prev
 bindsym $mod+Right workspace next
 
+# ======== Layout stuff ========
 #
-# Layout stuff:
-#
+# Toggle split mode
 bindsym $mod+v split toggle
 
 # Switch the current container between different layout styles
@@ -139,8 +115,7 @@ bindsym $mod+a focus parent
 # Move focus to the child container
 bindsym $mod+z focus child
 
-#
-# Scratchpad:
+# ========Scratchpad ========
 #
 # Move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -148,127 +123,51 @@ bindsym $mod+Shift+minus move scratchpad
 # Cycle through scratchpad windows
 bindsym $mod+minus scratchpad show
 
-
-##################################################
-### Control Modes
+# ======== Resize Mode ========
 #
-# Resizing containers:
+# Resize mode keybinds
+include $subcfgs/resize-mode
+
+# ======== Custom Bindings ========
 #
-mode "resize" {
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+## Application-launcher keybinds
+include $subcfgs/application-custom
 
-    # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+## Media and backlight keybinds
+include $subcfgs/media-controls
 
-    # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+r mode "resize"
-
-
-##################################################
-## CUSTOM KEYBINDS
-# Brightness controls
-bindsym XF86MonBrightnessDown exec "light -U 5 && /home/hyper/bin/notify.sh brightness"
-bindsym XF86MonBrightnessUp exec "light -A 5 && /home/hyper/bin/notify.sh brightness"
-
-# Audio controls
-bindsym XF86AudioRaiseVolume exec /home/hyper/bin/volume.sh up
-bindsym XF86AudioLowerVolume exec /home/hyper/bin/volume.sh down
-bindsym XF86AudioMute exec /home/hyper/bin/volume.sh mute
-bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
-
-# lock toggle
-bindsym $mod+backspace exec 'swaylock -f -c 3f4944'
-
-# screenshots
-bindsym $mod+Shift+p exec $grimsel
-
-# ytpm with fuzzel
-bindsym $mod+Shift+y exec "/home/hyper/bin/dm-ytpm | xargs /home/hyper/bin/ympv"
 
 ##################################################
 ## VISUAL/THEMING
-# Window border
-default_border pixel 2
-for_window [floating] border normal 2
-for_window [tiling] border pixel 3
-
-# Gaps
-gaps inner 5
-smart_gaps on
-
-# application-specific settings
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="task_dialog"] floating enable
-for_window [window_role="Preferences"] floating enable
-for_window [window_type="dialog"] floating enable
-for_window [window_type="menu"] floating enable
-
-for_window [app_id="pavucontrol"] floating enable
-for_window [instance="1password" title="1Password$"] floating enable, resize set 800 600
-for_window [class="1Password" title="1Password$"] floating enable, resize set 800 600
-
-# custom settings for floating windows
-
-
-
-# Window decoration
-set $default_blue #5e8d87
-
-# "primary color" for theming; this is  really the only color that should be adjusted; everything
-# else is pretty well balanced/neutral (for inactive windows, etc)
-set $pcolor         #8ec07c
-set $gray_dark      #242322
-set $red            #fb4934
-
-# class                 border  bground text    indicator child_border
-client.focused          #242322 $pcolor #FFFFFF #a54242  $pcolor
-client.focused_inactive #8C8C8C #4C4C4C #FFFFFF #4C4C4C   #8C8C8C
-client.unfocused        #4C4C4C #242322 #888888 #292D2E   #242322
-client.urgent           #EC69A0 #DB3279 #FFFFFF #DB3279   $red
-client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
-client.background       #FFFFFF
-
-# Status Bar:
-bar {
-    position top
-    status_command i3status
-
-    colors {
-        background $gray_dark
-        statusline #FFFFFF
-        separator  #666666
-
-        focused_workspace  #fefefe $pcolor  #ffffff
-        active_workspace   #3C6EB4 #294172  #FFFFFF
-        inactive_workspace #8C8C8C #4C4C4C  #888888
-        urgent_workspace   #EC69A0 $red     #FFFFFF
-        binding_mode       #b691d3 #A07CBC  #FFFFFF
-    }
-}
+##################################################
+include $subcfgs/window-settings
+include $subcfgs/colors
 
 
 ##################################################
 ## AUTOSTARTS
+##################################################
 #
 # Startup applications
 exec_always xrdb -load ~/.Xresources
+# start dunst for notifications
 exec dunst &
+# load sway autostart desktop entries
 exec dex --autostart --environment sway
 
 # Idle configuration
 exec ~/.config/sway/idle.sh &
 
+# start 1password
+exec "1password"
+
+# start a term window with a new tmux session that will be auto-moved to scratchpad
+exec "foot --app-id 'ctrl-term' tmn ctrl"
+
 # kanshi systemd service
-exec "sleep 3; systemctl --user start kanshi.service"
-exec "sleep 3; systemctl --user start gammastep.service"
+exec_always "sleep 1; systemctl --user restart kanshi.service"
+
+# gammastep systemd service
+exec "sleep 1; systemctl --user start gammastep.service"
 
 include /etc/sway/config.d/*

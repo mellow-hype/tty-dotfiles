@@ -1,0 +1,11 @@
+
+# Brightness controls
+bindsym XF86MonBrightnessDown exec $bright_down
+bindsym XF86MonBrightnessUp exec $bright_up
+
+# Audio controls
+bindsym XF86AudioRaiseVolume exec $vol_up
+bindsym XF86AudioLowerVolume exec $vol_down
+bindsym XF86AudioMute exec $vol_mute
+bindsym XF86AudioMicMute exec $mic_mute
+
