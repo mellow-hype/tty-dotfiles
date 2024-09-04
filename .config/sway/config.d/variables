@@ -10,9 +10,9 @@ set $screenclip "/home/hyper/bin/hyprkit/grimsel"
 set $fuzzel_cmd fuzzel -d -b "#212121ff" -t "#ffcc66ff" -s "#ffcc66ff" -S "#212121ff" --font="Terminus:size=10" -w 64 -I
 set $menu dmenu_path | $fuzzel_cmd | xargs swaymsg exec --
 
-# media playlist menu
-set $menu_mpv "/home/hyper/bin/dm-ytpm | xargs /home/hyper/bin/ympv"
-
+# ===============================
+# -- Media & Backlight --
+# ===============================
 # brightness control commands
 set $bright_down "light -U 5 && /home/hyper/bin/notify.sh brightness"
 set $bright_up "light -A 5 && /home/hyper/bin/notify.sh brightness"
@@ -22,3 +22,18 @@ set $vol_up "/home/hyper/bin/volume.sh up"
 set $vol_down "/home/hyper/bin/volume.sh down"
 set $vol_mute "/home/hyper/bin/volume.sh mute"
 set $mic_mute "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+
+# media playlist menu
+set $menu_mpv "/home/hyper/bin/dm-ytpm | xargs /home/hyper/bin/ympv"
+
+
+# ===============================
+# -- Handling marks --
+# ===============================
+set $menu_input fuzzel -d -w 32 -l 5 -I
+set $get_marks swaymsg -t get_marks | jq '.[]' | tr -d '"'
+# menu to add/remove marks using toggle
+set $mark_menu $get_marks | $menu_input | xargs -r swaymsg -- mark --add --toggle
+# menu to jump to marks using toggle
+set $goto_menu $get_marks | $menu_input | xargs -r -I '{}' swaymsg -- '[con_mark={}] focus'
+
