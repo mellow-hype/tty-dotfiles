@@ -131,8 +131,8 @@ include $subcfgs/resize-mode
 # ======== Custom Bindings ========
 #
 ## Custom mark/goto via menus
-bindsym $mod+m $mark_menu
-bindsym $mod+g $goto_menu
+bindsym $mod+m exec $mark_menu
+bindsym $mod+g exec $goto_menu
 
 ## Application-launcher keybinds
 include $subcfgs/application-custom
