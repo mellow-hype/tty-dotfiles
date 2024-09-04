@@ -3,19 +3,20 @@ set $default_blue #5e8d87
 
 # "primary color" for theming; this is  really the only color that should be adjusted; everything
 # else is pretty well balanced/neutral (for inactive windows, etc)
-set $pcolor         #8ec07c
+set $green         #8ec07c
 set $gray_dark      #242322
 set $red            #fb4934
+set $white          #ffffff
 
 
 # highlight/primary color
-set $cl_high $pcolor
+set $cl_high $green
 # urgent
 set $cl_urge $red
 # default bg
 set $cl_back $gray_dark
 # default fg
-set $cl_fore #FFFFFF
+set $cl_fore $white
 # indicator
 set $cl_indi #a54242
 
@@ -24,13 +25,6 @@ client.focused          $cl_high $cl_high $cl_fore $cl_indi $cl_high
 client.focused_inactive $cl_back $cl_back $cl_fore $cl_back $cl_back
 client.unfocused        $cl_back $cl_back $cl_fore $cl_back $cl_back
 client.urgent           $cl_urge $cl_urge $cl_fore $cl_urge $cl_urge
-
-# class                 border  bground text    indicator child_border
-# client.focused          #242322 $pcolor #FFFFFF #a54242  $pcolor
-# client.focused_inactive #8C8C8C #4C4C4C #FFFFFF #4C4C4C   #8C8C8C
-# client.unfocused        #4C4C4C #242322 #888888 #292D2E   #242322
-# client.urgent           #EC69A0 #DB3279 #FFFFFF #DB3279   $red
-#client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 client.background       #FFFFFF
 
 
