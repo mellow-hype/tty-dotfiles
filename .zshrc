@@ -56,7 +56,7 @@ alias swaycfg="vim ~/.config/sway/config"
 
 # better default ls and variants
 LSBIN=$(bash -c "which ls")
-alias l="$LSBIN--color=auto"
+alias l="$LSBIN --color=auto"
 alias ls="$LSBIN -l --color=auto --group-directories-first"
 alias la="$LSBIN -A"
 alias sl="$LSBIN"
