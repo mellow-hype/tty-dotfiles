@@ -69,6 +69,9 @@ in
         '';
     };
 
+    # Add gnome-keyring service
+    services.gnome.gnome-keyring.enable = true;
+
     environment.sessionVariables = {
         XDG_CURRENT_DESKTOP = "sway";
     };
