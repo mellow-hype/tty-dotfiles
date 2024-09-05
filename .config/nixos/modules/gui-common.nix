@@ -1,5 +1,5 @@
 
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, variables, ... }:
 
 {
     # Enable the X11 windowing system.
@@ -36,6 +36,13 @@
         mpv
         moc
     ];
+
+    # Install common GUI packages under user scope
+    users.users.${variables.username} = {
+        packages = with pkgs; [
+            obsidian
+        ];
+    };
 
     # Install fonts
     fonts.packages = with pkgs; [

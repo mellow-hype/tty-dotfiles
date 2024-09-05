@@ -75,6 +75,15 @@
         pinentry-tty
     ];
 
+    # Install common CLI packages under user scope
+    users.users.${variables.username} = {
+        packages = with pkgs; [
+            borgbackup
+            google-cloud-sdk
+            neofetch
+        ];
+    };
+
     # GPG + Yubikey support
     services.pcscd.enable = true;  # support for smartcard mode
     services.udev.packages = [ pkgs.yubikey-personalization ];
