@@ -3,7 +3,6 @@
 {
     # host specific variables
     variables.hostname = "carbon";
-    variables.videoDrivers = [];
     variables.useNvidia = false;
     variables.useNetworkManager = true;
 
@@ -37,6 +36,9 @@
     # set up for Intel drivers+firmware
     hardware.enableAllFirmware = true;
     hardware.enableRedistributableFirmware = true;
+
+    # bolt service for thunderbolt support
+    services.hardware.bolt.enable = true;
 
     # setup auto unlock of secondary luks storage
     environment.etc.crypttab.text = ''
