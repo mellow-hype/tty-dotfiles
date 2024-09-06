@@ -104,8 +104,8 @@ bindsym $mod+t layout toggle splith tabbed
 # Make the current focus fullscreen
 bindsym $mod+f fullscreen
 
-# Toggle the current focus between tiling and floating mode
-bindsym $mod+Shift+space floating toggle
+# Toggle window between tiling and floating mode
+bindsym $mod+Shift+space floating toggle, resize set 800 800
 
 # Swap focus between the tiling area and the floating area
 bindsym $mod+period focus mode_toggle
@@ -118,7 +118,7 @@ bindsym $mod+z focus child
 # ========Scratchpad ========
 #
 # Move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+Shift+minus floating enable, resize set 800 600; move scratchpad
 
 # Cycle through scratchpad windows
 bindsym $mod+minus scratchpad show
