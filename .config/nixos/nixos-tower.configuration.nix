@@ -36,6 +36,20 @@
         lm_sensors
     ];
 
+    # Mount custom filesystems
+    fileSystems."/media/hypercore/core" =
+    { device = "/dev/disk/by-uuid/72cb7022-7fcb-4d7b-bd94-4a89da1a8c18";
+      fsType = "ext4";
+    };
+    fileSystems."/media/hypercore/personal" =
+    { device = "/dev/disk/by-uuid/7da69fe4-b5c7-460e-8d8a-4bdccdf685ae";
+      fsType = "ext4";
+    };
+    fileSystems."/media/hypercore/media" =
+    { device = "/dev/disk/by-uuid/7a959e34-0822-418d-8af7-540e982e748a";
+      fsType = "ext4";
+    };
+
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
     # on your system were taken. It‘s perfectly fine and recommended to leave

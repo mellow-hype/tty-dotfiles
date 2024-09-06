@@ -104,8 +104,8 @@ bindsym $mod+t layout toggle splith tabbed
 # Make the current focus fullscreen
 bindsym $mod+f fullscreen
 
-# Toggle the current focus between tiling and floating mode
-bindsym $mod+Shift+space floating toggle
+# Toggle window between tiling and floating mode
+bindsym $mod+Shift+space floating toggle, resize set 800 800
 
 # Swap focus between the tiling area and the floating area
 bindsym $mod+period focus mode_toggle
@@ -118,7 +118,7 @@ bindsym $mod+z focus child
 # ========Scratchpad ========
 #
 # Move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+Shift+minus floating enable, resize set 800 600; move scratchpad
 
 # Cycle through scratchpad windows
 bindsym $mod+minus scratchpad show
@@ -145,7 +145,37 @@ include $subcfgs/media-controls
 ## VISUAL/THEMING
 ##################################################
 include $subcfgs/window-settings
+# default colors (in case custom ones aren't set by the host-specific config below)
 include $subcfgs/colors
+
+## HOST-SPECIFIC CONFIG
+include $subcfgs/$(hostname).config
+
+# class                 border   bground  text     indi     child_border
+client.focused          $cl_high $cl_high $cl_fore $cl_indi $cl_high
+client.focused_inactive $cl_back $cl_back $cl_fore $cl_back $cl_back
+client.unfocused        $cl_high $cl_gray $cl_fore $cl_back $cl_back
+client.urgent           $cl_urge $cl_urge $cl_fore $cl_urge $cl_urge
+client.background       #FFFFFF
+
+
+# Status Bar:
+bar {
+    position top
+    status_command i3status
+
+    colors {
+        background $cl_back
+        statusline $cl_fore
+        separator  $cl_gray
+
+        focused_workspace  $cl_fore $cl_high    $cl_fore
+        active_workspace   $cl_fore $cl_high    $cl_fore
+        inactive_workspace $cl_gray $cl_back    $cl_fore
+        urgent_workspace   $cl_urge $cl_urge    $cl_fore
+        binding_mode       $cl_back $cl_urge    $cl_fore
+    }
+}
 
 
 ##################################################

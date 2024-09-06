@@ -72,12 +72,27 @@
         file
         killall
         unzip
+        pinentry-tty
     ];
+
+    # Install common CLI packages under user scope
+    users.users.${variables.username} = {
+        packages = with pkgs; [
+            borgbackup
+            google-cloud-sdk
+            neofetch
+        ];
+    };
+
+    # GPG + Yubikey support
+    services.pcscd.enable = true;  # support for smartcard mode
+    services.udev.packages = [ pkgs.yubikey-personalization ];
 
     # Some programs need SUID wrappers, can be configured further or are
     # started in user sessions.
     programs.gnupg.agent = {
       enable = true;
+      pinentryPackage = pkgs.pinentry-gtk2;
       enableSSHSupport = true;
     };
 }
