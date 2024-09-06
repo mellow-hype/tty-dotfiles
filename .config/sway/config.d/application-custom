@@ -1,23 +1,22 @@
 
-## -- Custom Application Keybinds --
+## -- Custom Application Launchers --
 # lock toggle
-bindsym $mod+backspace exec $lock
+bindsym $mod+Control+q exec $lock
+
+# open Obsidian
+bindsym $mod+Control+o exec $notes
 
 # screenshots select
-bindsym $mod+Shift+p exec $screenclip
+bindsym $mod+Control+s exec $screenclip
 
 # ytpm with fuzzel
-bindsym $mod+Shift+y exec $menu_mpv
+bindsym $mod+Control+y exec $menu_mpv
 
-# Start a terminal
-bindsym $mod+Return exec $term
-
-# Start a browser
-bindsym $mod+w exec --no-startup-id $browser
-
-# Start launcher
-bindsym $mod+space exec $menu
+# ytpm with fuzzel
+bindsym $mod+Control+t exec $tmenu
 
 # custom binding tos how 1password scratchpad window if it exists
 bindsym $mod+p [instance="1password"] scratchpad show
 
+# custom binding to focus the open Obisidian window
+bindsym $mod+o [instance="obsidian"] focus

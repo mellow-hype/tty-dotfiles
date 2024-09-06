@@ -3,11 +3,14 @@
 # applications
 set $term foot
 set $browser firefox
-set $lock "swaylock"
+set $notes obsidian
+set $lock swaylock
 set $screenclip "/home/hyper/bin/hyprkit/grimsel"
+set $swayfocus "/home/hyper/bin/dm-swayfocus"
+set $tmenu "/home/hyper/bin/tmenu"
 
 # Command for menu provider
-set $fuzzel_cmd fuzzel -d -b "#212121ff" -t "#ffcc66ff" -s "#ffcc66ff" -S "#212121ff" --font="Terminus:size=10" -w 64 -I
+set $fuzzel_cmd fuzzel -d -w 64 -I
 set $menu dmenu_path | $fuzzel_cmd | xargs swaymsg exec --
 
 # ===============================
@@ -35,5 +38,5 @@ set $get_marks swaymsg -t get_marks | jq '.[]' | tr -d '"'
 # menu to add/remove marks using toggle
 set $mark_menu $get_marks | $menu_input | xargs -r swaymsg -- mark --add --toggle
 # menu to jump to marks using toggle
-set $goto_menu $get_marks | $menu_input | xargs -r -I '{}' swaymsg -- '[con_mark={}] focus'
+set $goto_menu $get_marks | $menu_input | xargs -r -I '{}' swaymsg -- '[con_mark="{}"] focus'
 

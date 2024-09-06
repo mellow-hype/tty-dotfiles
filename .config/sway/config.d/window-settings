@@ -25,3 +25,5 @@ for_window [app_id="ctrl-term"] floating enable, move scratchpad
 for_window [instance="1password" title="1Password$"] floating enable, resize set 800 600, move scratchpad, scratchpad show
 for_window [class="1Password" title="1Password$"] floating enable, resize set 800 600, move scratchpad, scratchpad show
 
+# auto-mark Obisidian with mark "obs"
+for_window [class="obsidian"] mark --add obs
