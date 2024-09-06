@@ -7,13 +7,17 @@ bindsym $mod+Control+q exec $lock
 bindsym $mod+Control+o exec $notes
 
 # screenshots select
-bindsym $mod+Control+s exec $screenclip
+bindsym $mod+Control+p exec $screenclip
+
 
 # ytpm with fuzzel
 bindsym $mod+Control+y exec $menu_mpv
 
-# ytpm with fuzzel
+# tmux session selector with fuzzel
 bindsym $mod+Control+t exec $tmenu
+
+# Select windows from scratchpad with fuzzel menu
+bindsym $mod+Control+Tab exec $scratchmenu
 
 # custom binding tos how 1password scratchpad window if it exists
 bindsym $mod+p [instance="1password"] scratchpad show

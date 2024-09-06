@@ -5,8 +5,10 @@ set $term foot
 set $browser firefox
 set $notes obsidian
 set $lock swaylock
+
 set $screenclip "/home/hyper/bin/hyprkit/grimsel"
 set $swayfocus "/home/hyper/bin/dm-swayfocus"
+set $scratchmenu "/home/hyper/bin/hyprkit/dm-scratchmenu"
 set $tmenu "/home/hyper/bin/tmenu"
 
 # Command for menu provider
