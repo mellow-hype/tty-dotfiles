@@ -3,12 +3,14 @@
 {
     # host specific variables
     variables.hostname = "carbon";
-    variables.videoDrivers = [];
     variables.useNvidia = false;
     variables.useNetworkManager = true;
 
     # host-specific user packages
-    variables.userPkgs = with pkgs; [ obsidian ];
+    variables.userPkgs = with pkgs; [
+        obsidian
+        google-cloud-sdk
+    ];
 
     imports =
         [ # Include the results of the hardware scan.
@@ -24,6 +26,9 @@
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
 
+    # =====================================================================
+    # --- CUSTOM HARDWARE SETTINGS
+    # =====================================================================
     # enable OpenGL
     hardware.opengl = {
         enable = true;
@@ -38,6 +43,18 @@
     hardware.enableAllFirmware = true;
     hardware.enableRedistributableFirmware = true;
 
+    # FIXME: workaround to make Intel sound work on kernel 6.6; should be fixed soon.
+    # see https://github.com/NixOS/nixpkgs/issues/330685#issuecomment-2270936333
+    boot.extraModprobeConfig = ''
+        options snd-hda-intel dmic_detect=0
+    '';
+
+    # bolt service for thunderbolt support
+    services.hardware.bolt.enable = true;
+
+    # =====================================================================
+    # --- AUTOMOUNT STORAGE
+    # =====================================================================
     # setup auto unlock of secondary luks storage
     environment.etc.crypttab.text = ''
         hyprcrypt UUID=fab2649e-2880-4a75-9264-5d6cf8ec6a94  /root/core-luks.key    luks
@@ -64,11 +81,15 @@
         size = 32 * 1024;
     }];
 
+    # =====================================================================
+    # --- APPLICATIONS
+    # =====================================================================
     # Install light for backlight control
     programs.light.enable = true;
 
     # machine-specific packages
     environment.systemPackages = with pkgs; [
+        #sof-firmware
     ];
 
     # This value determines the NixOS release from which the default

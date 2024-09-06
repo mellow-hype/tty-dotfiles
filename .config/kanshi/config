@@ -5,7 +5,8 @@ profile {
 
 # ultrawide + x1carbon screen off
 profile {
-    output "Unknown 0x8C44 0x00000000" disable
+    # output "Unknown 0x8C44 0x00000000" disable
+    output eDP-1 disable
     output "Samsung Electric Company LC49G95T H4ZR904346" mode 5120x1440 enable position 0,0
 }
 
