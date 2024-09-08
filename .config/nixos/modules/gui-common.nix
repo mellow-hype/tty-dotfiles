@@ -2,6 +2,10 @@
 { config, pkgs, lib, variables, ... }:
 
 {
+    imports = [
+        /etc/nixos/modules/media-tools.nix
+    ];
+
     # Enable the X11 windowing system.
     services.xserver.enable = true;
 
