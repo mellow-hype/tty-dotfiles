@@ -88,6 +88,7 @@ in
 
     environment.sessionVariables = {
         XDG_CURRENT_DESKTOP = "sway";
+        NIXOS_OZONE_WL = "1";
     };
 
     # systemd user services for kanshi
