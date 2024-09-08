@@ -36,10 +36,12 @@
 
     # other gui packages
     environment.systemPackages = with pkgs; [
-        # media
+        # looks
         shared-mime-info
         gnome.adwaita-icon-theme
         xfce.xfce4-icon-theme
+        # other
+        ungoogled-chromium
     ];
 
     # add thunar
