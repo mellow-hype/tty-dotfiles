@@ -3,12 +3,10 @@
 {
     # host specific variables
     variables.hostname = "carbon";
-    variables.useNvidia = false;
     variables.useNetworkManager = true;
 
     # host-specific user packages
     variables.userPkgs = with pkgs; [
-        obsidian
         google-cloud-sdk
     ];
 

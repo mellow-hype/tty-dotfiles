@@ -6,7 +6,7 @@
     variables.useNetworkManager = true;
 
     # host-specific user packages
-    variables.userPkgs = with pkgs; [ obsidian ];
+    variables.userPkgs = with pkgs; [ ];
 
     imports =
         [ # Include the results of the hardware scan.
@@ -23,6 +23,9 @@
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
 
+    # =====================================================================
+    # --- SERVICES
+    # =====================================================================
     # ssh server setup
     services.openssh = {
         enable = true;
@@ -30,12 +33,18 @@
         settings.PasswordAuthentication = false;
     };
 
+    # =====================================================================
+    # --- APPLICATIONS
+    # =====================================================================
     # machine-specific packages
     environment.systemPackages = with pkgs; [
         liquidctl
         lm_sensors
     ];
 
+    # =====================================================================
+    # --- AUTOMOUNT STORAGE
+    # =====================================================================
     # Mount custom filesystems
     fileSystems."/media/hypercore/core" =
     { device = "/dev/disk/by-uuid/72cb7022-7fcb-4d7b-bd94-4a89da1a8c18";
