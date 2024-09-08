@@ -48,6 +48,7 @@ in
             dex
             gammastep
             wdisplays
+            qt6.qtwayland
         ];
         extraSessionCommands = ''
           export MOZ_ENABLE_WAYLAND=1
