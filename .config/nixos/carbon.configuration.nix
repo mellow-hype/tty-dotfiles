@@ -3,6 +3,7 @@
 {
     # host specific variables
     variables.hostname = "carbon";
+    variables.useNvidia = false;
     variables.useNetworkManager = true;
 
     # host-specific user packages
@@ -30,10 +31,13 @@
     # enable OpenGL
     hardware.opengl = {
         enable = true;
+        driSupport = true;
         extraPackages = with pkgs; [
             onevpl-intel-gpu
             intel-vaapi-driver
+            intel-media-driver
             libvdpau-va-gl
+            mesa.drivers
         ];
     };
 
