@@ -33,9 +33,21 @@
     # other gui packages
     environment.systemPackages = with pkgs; [
         # media
-        mpv
-        moc
+        shared-mime-info
+        gnome.adwaita-icon-theme
+        xfce.xfce4-icon-theme
     ];
+
+    # add thunar
+    programs.thunar.enable = true;
+    programs.thunar.plugins = with pkgs.xfce; [
+        thunar-archive-plugin
+        thunar-volman
+    ];
+    programs.xfconf.enable = true;
+
+    # Support for USB automount and MTP in file managers
+    services.gvfs.enable = true;
 
     # Install common GUI packages under user scope
     users.users.${variables.username} = {
@@ -43,7 +55,6 @@
             obsidian
         ];
     };
-
     # Install fonts
     fonts.packages = with pkgs; [
         terminus_font
